@@ -1,24 +1,45 @@
 {
   "name": "redux-json-router",
-  "version": "0.0.1",
-  "author": {
-    "name": "Michael Sargent",
-    "email": "michael-sargent@hotmail.com",
-    "url": "https://mksarge.com"
-  },
-  "description": "A Redux router with a simple route config using JSON.",
+  "version": "0.0.0",
+  "description": "A redux router with simple json routing config",
   "main": "dist/index.js",
+  "license": "MIT",
+  "homepage": "https://redux-json-router.firebaseapp.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mksarge/redux-json-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mksarge/redux-json-router/issues"
+  },
+  "author": "Michael Sargent <michael-sargent@hotmail.com> (https://mksarge.com)",
   "keywords": [
     "redux",
     "json",
     "router"
   ],
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 4"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mksarge/redux-json-router.git"
+  "babel": {
+    "presets": [
+      "latest",
+      "stage-0"
+    ],
+    "plugins": [
+      "transform-runtime"
+    ]
   },
-  "license": "MIT"
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": "airbnb-base"
+  },
+  "dependencies": {
+    "react": "^0.13.3",
+    "redux": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^6.11.6"
+  }
 }
