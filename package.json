@@ -1,0 +1,24 @@
+{
+  "name": "redux-json-router",
+  "version": "0.0.1",
+  "author": {
+    "name": "Michael Sargent",
+    "email": "michael-sargent@hotmail.com",
+    "url": "https://mksarge.com"
+  },
+  "description": "A Redux router with a simple route config using JSON.",
+  "main": "dist/index.js",
+  "keywords": [
+    "redux",
+    "json",
+    "router"
+  ],
+  "engines": {
+    "node": ">= 0.12.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mksarge/redux-json-router.git"
+  },
+  "license": "MIT"
+}
