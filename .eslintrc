@@ -1,0 +1,31 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb",
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "import/no-extraneous-dependencies": [
+      0,
+      {
+        "peerDependencies": true
+      }
+    ],
+    "react/jsx-filename-extension": 0,
+    "no-alert": 0,
+    "arrow-parens": [
+      1,
+      "always"
+    ],
+    "no-plusplus": 0,
+    "no-console": 0,
+    "object-shorthand": 1,
+    "class-methods-use-this": 1,
+    "no-else-return": 0,
+    "react/no-danger": 0,
+    "no-underscore-dangle": 0,
+    "no-prototype-builtins": 0,
+    "react/require-default-props": 1,
+    "react/forbid-prop-types": 1
+  }
+}
