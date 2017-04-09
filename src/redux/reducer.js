@@ -30,7 +30,11 @@ const routerReducer = (state = initialState, action) => {
     case GO:
       return {
         ...state,
-        index: state.index + action.payload,
+        index: Math.min(
+          Math.max(
+            state.index + action.payload,
+            0),
+          state.history.length - 1),
       };
     case GO_BACK:
       return {
