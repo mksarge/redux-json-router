@@ -2,7 +2,7 @@
   "name": "redux-json-router",
   "version": "0.0.0",
   "description": "A redux router with simple json routing config",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://redux-json-router.firebaseapp.com",
   "repository": {
@@ -31,18 +31,19 @@
     ]
   },
   "dependencies": {
-    "react": "^15.4.2",
+    "history": "^4.6.1",
+    "react": "^15.5.3",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.24.0",
-    "babel-core": "^6.24.0",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.1",
     "babel-loader": "^6.4.1",
-    "babel-preset-es2015": "^6.24.0",
-    "babel-preset-react": "^6.23.0",
-    "babel-preset-stage-2": "^6.22.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
@@ -50,7 +51,7 @@
     "eslint-plugin-react": "^6.10.3",
     "mocha": "^3.2.0",
     "rimraf": "^2.6.1",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.3"
   },
   "scripts": {
     "build": "npm run clean && npm run build:node",
