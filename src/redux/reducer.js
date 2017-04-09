@@ -4,10 +4,11 @@ import {
   GO,
   GO_BACK,
   GO_FORWARD,
+  LOCATION_CHANGED,
 } from './constants';
 
 const initialState = {
-  history: ['/'],
+  history: [window.location.pathname],
   index: 0,
 };
 
@@ -49,6 +50,11 @@ const routerReducer = (state = initialState, action) => {
         index: (state.index < state.history.length - 1)
           ? (state.index + 1)
           : state.history.length - 1,
+      };
+    case LOCATION_CHANGED:
+      return {
+        ...state,
+        history: [...state.history.slice(0, state.history.length - 1), action.payload],
       };
     default:
       return state;

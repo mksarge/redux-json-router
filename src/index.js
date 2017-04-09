@@ -1,8 +1,7 @@
 // Redux store config
 export { routerReducer } from './redux/reducer';
 export { routerMiddleware } from './redux/middleware';
-export { createRouterHistory } from './helpers/createHistory';
-export { getInitialLocation } from './helpers/getInitialLocation';
+export { createRouterHistory } from './helpers/createRouterHistory';
 
 // React components
 export { RouterContainer as Router } from './react/Router';
@@ -15,6 +14,7 @@ export {
   GO,
   GO_BACK,
   GO_FORWARD,
+  LOCATION_CHANGED,
 } from './redux/constants';
 
 // Public action creators
@@ -24,4 +24,5 @@ export {
   go,
   goBack,
   goForward,
+  locationChanged,
 } from './redux/actions';
