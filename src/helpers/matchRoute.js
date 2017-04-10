@@ -1,43 +1,36 @@
-const stripBasePath = (url) => url.split('/').slice(1);
-
-function findAndLoad(routes, pathsArray) {
+function findAndLoad(routes, paths) {
   let matchVar;
   let matchExact;
+  const currentPath = paths[0];
 
-  const index = routes.findIndex((obj) => {
-    matchVar = /^\/:/.test(obj.path);
-    matchExact = obj.path === `/${pathsArray[0]}`;
+  const index = routes.findIndex((route) => {
+    matchVar = /^\/:/.test(route.path);
+    matchExact = `/${currentPath}` === route.path;
     return matchVar || matchExact;
   });
 
   if (index >= 0) {
-    if (pathsArray[1] && routes[index].children) {
-      const next = findAndLoad(routes[index].children, pathsArray.slice(1));
+    // if the paths array has length > 1, and the current route object
+    // has a 'children' property, search recursively for nested routes
+    if (paths.length > 1 && routes[index].children) {
+      const next = findAndLoad(routes[index].children, paths.slice(1));
       if (next) {
         return next;
       }
     }
-    return routes[index].load(pathsArray[0]);
+    // else, load the current route object
+    return routes[index].load(currentPath);
   } else {
     const errIndex = routes.findIndex((obj) => obj.path === '*');
     return (errIndex >= 0)
-      ? routes[errIndex].load(pathsArray[0])
+      ? routes[errIndex].load(currentPath)
       : null;
   }
 }
 
-const loadRoute = (routes, url) => {
-  const paths = stripBasePath(url);
-  return findAndLoad(routes, paths);
+const matchRoute = (routes, router) => {
+  const component = findAndLoad(routes, router.paths);
+  return component;
 };
 
-export { loadRoute };
-
-/*
-pathname: window.location.pathname,
-href: window.location.href,
-search: window.location.search,
-hash: window.location.hash,
-origin: window.location.origin,
-host: window.location.host,
-*/
+export { matchRoute };

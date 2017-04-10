@@ -2,24 +2,31 @@ import { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { matchRoute } from '../helpers/matchRoute';
 
-const Router = ({ routes, router }) => matchRoute(routes, router.history[router.index]);
+const Router = ({ routes, router }) => matchRoute(routes, router);
 
 Router.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.shape({
     path: PropTypes.string.isRequired,
     load: PropTypes.func.isRequired,
-    before: PropTypes.array,
-    after: PropTypes.array,
     children: PropTypes.array,
   })).isRequired,
   router: PropTypes.shape({
-    history: PropTypes.arrayOf(PropTypes.string).isRequired,
-    index: PropTypes.number.isRequired,
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
+    hash: PropTypes.string.isRequired,
+    paths: PropTypes.array.isRequired,
+    queries: PropTypes.object.isRequired,
+    previous: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+      search: PropTypes.string.isRequired,
+      hash: PropTypes.string.isRequired,
+      paths: PropTypes.array.isRequired,
+      queries: PropTypes.object.isRequired,
+    }).isRequired,
   }),
 };
 
 const mapStateToProps = ({ router }) => ({ router });
-
 const RouterContainer = connect(mapStateToProps)(Router);
 
 export { RouterContainer };
