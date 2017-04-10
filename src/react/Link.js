@@ -24,17 +24,13 @@ class Link extends React.Component {
     }
 
     event.preventDefault();
-
     this.props.dispatch(push(this.props.to));
   }
 
   render() {
     const { to, children, dispatch, ...rest } = this.props;
-    // eslint-disable-next-line jsx-a11y/anchor-has-content
     return (
-      <a href={this.props.to} onClick={this.handleClick} {...rest}>
-        {this.props.children}
-      </a>
+      <a href={to} onClick={this.handleClick} {...rest} >{children}</a>
     );
   }
 }
