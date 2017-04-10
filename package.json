@@ -16,19 +16,12 @@
   "keywords": [
     "redux",
     "json",
-    "router"
+    "router",
+    "middleware",
+    "react"
   ],
   "engines": {
     "node": ">= 4"
-  },
-  "babel": {
-    "presets": [
-      "latest",
-      "stage-0"
-    ],
-    "plugins": [
-      "transform-runtime"
-    ]
   },
   "dependencies": {
     "history": "^4.6.1",
@@ -44,6 +37,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "chai": "^3.5.0",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
@@ -54,10 +48,11 @@
     "webpack": "^2.3.3"
   },
   "scripts": {
-    "build": "npm run clean && npm run build:node",
-    "build:node": "babel src --out-dir lib",
     "clean": "rimraf lib dist",
     "lint": "eslint src test",
-    "test": "npm run lint && mocha --compilers js:babel-core/register test/**/*.js"
+    "build:node": "babel src --out-dir lib",
+    "build": "npm run clean && npm run build:node",
+    "test": "mocha --compilers js:babel-core/register **/*.spec.js",
+    "prepublish": "npm run lint && npm run build && npm run test"
   }
 }
