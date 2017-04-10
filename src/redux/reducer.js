@@ -4,7 +4,7 @@ import {
   GO,
   GO_BACK,
   GO_FORWARD,
-  LOCATION_CHANGED,
+  MANUAL_CHANGE,
 } from './constants';
 
 const initialState = {
@@ -51,7 +51,7 @@ const routerReducer = (state = initialState, action) => {
           ? (state.index + 1)
           : state.history.length - 1,
       };
-    case LOCATION_CHANGED:
+    case MANUAL_CHANGE:
       return {
         ...state,
         history: [...state.history.slice(0, state.history.length - 1), action.payload],

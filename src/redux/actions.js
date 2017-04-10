@@ -4,7 +4,7 @@ import {
   GO,
   GO_BACK,
   GO_FORWARD,
-  LOCATION_CHANGED,
+  MANUAL_CHANGE,
 } from './constants';
 
 const push = (href) => ({
@@ -30,8 +30,8 @@ const goForward = () => ({
   type: GO_FORWARD,
 });
 
-const locationChanged = (href) => ({
-  type: LOCATION_CHANGED,
+const manualChange = (href) => ({
+  type: MANUAL_CHANGE,
   payload: href,
 });
 
@@ -41,5 +41,5 @@ export {
   go,
   goBack,
   goForward,
-  locationChanged,
+  manualChange,
 };

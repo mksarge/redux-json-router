@@ -4,7 +4,6 @@ import {
   GO,
   GO_BACK,
   GO_FORWARD,
-  LOCATION_CHANGED,
 } from './constants';
 
 // eslint-disable-next-line consistent-return
@@ -24,8 +23,6 @@ const routerMiddleware = (history) => () => (next) => (action) => {
       return next(action);
     case GO_FORWARD:
       history.goForward();
-      return next(action);
-    case LOCATION_CHANGED:
       return next(action);
     default:
       return next(action);

@@ -16,7 +16,7 @@ export {
   GO,
   GO_BACK,
   GO_FORWARD,
-  LOCATION_CHANGED,
+  MANUAL_CHANGE,
 } from './redux/constants';
 
 // Public action creators
@@ -26,5 +26,5 @@ export {
   go,
   goBack,
   goForward,
-  locationChanged,
+  manualChange,
 } from './redux/actions';
