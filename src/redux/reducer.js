@@ -1,5 +1,9 @@
 import { PUSH, REPLACE, MANUAL_CHANGE } from './constants';
-import { parseUrl, parsePathsFromPathname, parseQueriesFromSearch } from '../helpers/parseUrl';
+import {
+  parseResource,
+  parsePathsFromPathname,
+  parseQueriesFromSearch,
+} from '../helpers/parseUrl';
 
 function getInitialState() {
   return {
@@ -24,7 +28,7 @@ const routerReducer = (state = getInitialState(), action) => {
     case REPLACE:
     case MANUAL_CHANGE:
       return {
-        ...parseUrl(action.payload),
+        ...parseResource(action.payload),
         previous: {
           pathname: state.pathname,
           search: state.search,

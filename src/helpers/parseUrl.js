@@ -1,11 +1,3 @@
-// Parse a nested pathname into an array.
-// Eg. '/nested/route/3' => ['nested, 'route', '3']
-function parsePathsFromPathname(pathname) {
-  return pathname
-    .split('/')
-    .slice(1);
-}
-
 // Parse a search string into an object.
 // Eg. '?key=val&key2=val2' => {'key':'val', 'key2':'val2'}
 function parseQueriesFromSearch(search) {
@@ -19,12 +11,21 @@ function parseQueriesFromSearch(search) {
     }, {});
 }
 
-function parseUrl(url) {
-  // separate hash string
-  const [urlWithoutHash, hash] = url.split('#');
+// Parse a nested pathname into an array.
+// Eg. '/nested/route/3' => ['nested, 'route', '3']
+function parsePathsFromPathname(pathname) {
+  return pathname
+    .split('/')
+    .slice(1);
+}
 
-  // separate search string
-  const [pathname, search] = urlWithoutHash.split('?');
+// Parse a URL resource into an object for storing on the redux state tree.
+function parseResource(resource) {
+  // separate the hash string
+  const [resourceWithoutHash, hash] = resource.split('#');
+
+  // separate the search string
+  const [pathname, search] = resourceWithoutHash.split('?');
 
   // split and map search params into an object, if search exists
   const queries = (search) ? parseQueriesFromSearch(search) : {};
@@ -41,4 +42,4 @@ function parseUrl(url) {
   };
 }
 
-export { parseUrl, parsePathsFromPathname, parseQueriesFromSearch };
+export { parseQueriesFromSearch, parsePathsFromPathname, parseResource };

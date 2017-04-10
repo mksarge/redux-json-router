@@ -2,11 +2,11 @@ import { expect } from 'chai';
 import {
   parseQueriesFromSearch,
   parsePathsFromPathname,
-  parseUrl,
+  parseResource,
 } from '../../src/helpers/parseUrl';
 
 describe('parseQueriesFromSearch', () => {
-  it('parses a search string correctly', () => {
+  it('parses a URL search string correctly', () => {
     const search = '?key=val&1=2';
     const expectedResult = {
       key: 'val',
@@ -18,7 +18,7 @@ describe('parseQueriesFromSearch', () => {
 });
 
 describe('parsePathsFromPathname', () => {
-  it('parses a pathname correctly', () => {
+  it('parses a URL pathname correctly', () => {
     const pathname = '/nested/route/1';
     const expectedResult = [
       'nested',
@@ -30,8 +30,8 @@ describe('parsePathsFromPathname', () => {
   });
 });
 
-describe('parseUrl', () => {
-  it('parses a url resource correctly', () => {
+describe('parseResource', () => {
+  it('parses a URL resource correctly', () => {
     const resource = '/nested/route?query=string#hash';
     const expectedResult = {
       pathname: '/nested/route',
@@ -45,7 +45,7 @@ describe('parseUrl', () => {
         query: 'string',
       },
     };
-    const actualResult = parseUrl(resource);
+    const actualResult = parseResource(resource);
     expect(actualResult).to.eql(expectedResult);
   });
 });
