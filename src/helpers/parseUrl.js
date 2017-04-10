@@ -34,7 +34,7 @@ function parseUrl(url) {
 
   return {
     pathname: pathname || '/',
-    search: search || '',
+    search: (search && `?${search}`) || '',
     hash: (hash && `#${hash}`) || '',
     paths,
     queries,
