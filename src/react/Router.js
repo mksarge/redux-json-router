@@ -1,8 +1,8 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadRoute } from '../helpers/loadRoute';
+import { matchRoute } from '../helpers/matchRoute';
 
-const Router = ({ routes, router }) => loadRoute(routes, router.history[router.index]);
+const Router = ({ routes, router }) => matchRoute(routes, router.history[router.index]);
 
 Router.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.shape({
