@@ -1,9 +1,11 @@
-// Redux store config
+// History API
+export { createBrowserHistory } from './helpers/createBrowserHistory';
+
+// Redux API
 export { routerReducer } from './redux/reducer';
 export { routerMiddleware } from './redux/middleware';
-export { createRouterHistory } from './helpers/createRouterHistory';
 
-// React components
+// React API
 export { RouterContainer as Router } from './react/Router';
 export { LinkContainer as Link } from './react/Link';
 
