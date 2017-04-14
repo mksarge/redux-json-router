@@ -1,5 +1,5 @@
 import { PUSH, REPLACE, MANUAL_CHANGE } from './constants';
-import { parseResource, parsePathsFromPathname, parseQueriesFromSearch } from '../helpers/parseUrl';
+import { parseResource, parsePathsFromPathname, parseQueriesFromSearch } from '../utils/parseUrl';
 
 function getInitialState() {
   return {

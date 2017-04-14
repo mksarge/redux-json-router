@@ -3,7 +3,7 @@ import {
   parseQueriesFromSearch,
   parsePathsFromPathname,
   parseResource,
-} from '../../src/helpers/parseUrl';
+} from '../../src/utils/parseUrl';
 
 describe('parseQueriesFromSearch', () => {
   it('parses a URL search string correctly', () => {

@@ -1,6 +1,6 @@
 import { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { matchRoute } from '../helpers/matchRoute';
+import { matchRoute } from '../utils/matchRoute';
 
 const Router = ({ routes, router }) => matchRoute(routes, router);
 
