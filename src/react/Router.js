@@ -1,8 +1,54 @@
-import { PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { matchRoute } from '../utils/matchRoute';
+import { matchRoute } from '../utils/matcher';
 
-const Router = ({ routes, router }) => matchRoute(routes, router);
+class Router extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      component: null,
+      params: {},
+      loaded: false,
+    };
+  }
+
+  componentWillMount() {
+    const { routes, router } = this.props;
+    const { route, params } = matchRoute(routes, router.paths);
+    if (route) {
+      route.load().then((component) => {
+        this.setState({
+          params,
+          component,
+          loaded: true,
+        });
+      });
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { routes, router } = nextProps;
+    if (router.url !== this.props.router.url) {
+      const { route, params } = matchRoute(routes, router.paths);
+      if (route) {
+        route.load().then((component) => {
+          this.setState({
+            params,
+            component,
+            loaded: true,
+          });
+        });
+      }
+    }
+  }
+
+  render() {
+    const Component = this.state.component;
+    const params = this.state.params;
+    return this.state.loaded ? <Component params={params} /> : null;
+  }
+
+}
 
 Router.propTypes = {
   routes: PropTypes.arrayOf(PropTypes.shape({
@@ -13,13 +59,13 @@ Router.propTypes = {
   router: PropTypes.shape({
     url: PropTypes.string.isRequired,
     hash: PropTypes.string.isRequired,
-    paths: PropTypes.array.isRequired,
     queries: PropTypes.object.isRequired,
+    paths: PropTypes.array.isRequired,
     previous: PropTypes.shape({
       url: PropTypes.string.isRequired,
       hash: PropTypes.string.isRequired,
-      paths: PropTypes.array.isRequired,
       queries: PropTypes.object.isRequired,
+      paths: PropTypes.array.isRequired,
     }).isRequired,
   }),
 };
