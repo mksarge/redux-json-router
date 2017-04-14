@@ -1,10 +1,4 @@
-import {
-  PUSH,
-  REPLACE,
-  GO,
-  GO_BACK,
-  GO_FORWARD,
-} from './constants';
+import { PUSH, REPLACE, GO, GO_BACK, GO_FORWARD } from './constants';
 
 // eslint-disable-next-line consistent-return
 const routerMiddleware = (history) => () => (next) => (action) => {

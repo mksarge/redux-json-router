@@ -1,11 +1,4 @@
-import {
-  PUSH,
-  REPLACE,
-  GO,
-  GO_BACK,
-  GO_FORWARD,
-  MANUAL_CHANGE,
-} from './constants';
+import { PUSH, REPLACE, GO, GO_BACK, GO_FORWARD, MANUAL_CHANGE } from './constants';
 
 const push = (href) => ({
   type: PUSH,
@@ -35,11 +28,4 @@ const manualChange = (href) => ({
   payload: href,
 });
 
-export {
-  push,
-  replace,
-  go,
-  goBack,
-  goForward,
-  manualChange,
-};
+export { push, replace, go, goBack, goForward, manualChange };
