@@ -1,5 +1,7 @@
-// Parse a search string into an object.
-// Eg. '?key=val&key2=val2' => {'key':'val', 'key2':'val2'}
+/**
+ * Parse a search string into an object.
+ * Eg. '?key=val&key2=val2' => {'key':'val', 'key2':'val2'}
+ */
 function parseQueriesFromSearch(search) {
   return search
     .slice(search.indexOf('?') + 1)
@@ -11,18 +13,22 @@ function parseQueriesFromSearch(search) {
     }, {});
 }
 
-// Parse a nested pathname into an array.
-// Eg. '/nested/route/3' => ['nested, 'route', '3']
+/**
+ * Parse a nested pathname into an array.
+ * Eg. '/nested/route/3' => ['nested, 'route', '3']
+ */
 function parsePathsFromPathname(pathname) {
   return pathname
     .split('/')
     .slice(1);
 }
 
-// Parse a URL resource into an object for storing on the redux state tree.
-function parseResource(resource) {
+/**
+ * Parse a URL resource into an object for storing on the redux state tree.
+ */
+function parseUrl(url) {
   // separate the hash string
-  const [resourceWithoutHash, hash] = resource.split('#');
+  const [resourceWithoutHash, hash] = url.split('#');
 
   // separate the search string
   const [pathname, search] = resourceWithoutHash.split('?');
@@ -34,12 +40,11 @@ function parseResource(resource) {
   const paths = (pathname) ? parsePathsFromPathname(pathname) : [];
 
   return {
-    pathname: pathname || '/',
-    search: (search && `?${search}`) || '',
-    hash: (hash && `#${hash}`) || '',
-    paths,
+    url: url || '/',
+    hash: hash || '',
     queries,
+    paths,
   };
 }
 
-export { parseQueriesFromSearch, parsePathsFromPathname, parseResource };
+export { parseUrl, parseQueriesFromSearch, parsePathsFromPathname };
