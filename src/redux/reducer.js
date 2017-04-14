@@ -1,20 +1,20 @@
 import { PUSH, REPLACE, MANUAL_CHANGE } from './constants';
-import { parseUrl, parsePathsFromPathname, parseQueriesFromSearch } from '../utils/parser';
+import { parseUrl } from '../utils/parser';
 
-function getInitialState() {
-  return {
-    url: `${location.pathname}${location.search}${location.hash}`,
-    hash: window.location.hash,
-    paths: [...parsePathsFromPathname(window.location.pathname)],
-    queries: { ...parseQueriesFromSearch(window.location.search) },
-    previous: {
-      url: '',
-      hash: '',
-      paths: [],
-      queries: {},
-    },
-  };
-}
+const getInitialState = {
+  url: '/',
+  hash: '',
+  queries: {},
+  paths: [
+    '',
+  ],
+  previous: {
+    url: '',
+    hash: '',
+    queries: {},
+    paths: [],
+  },
+};
 
 const routerReducer = (state = getInitialState(), action) => {
   switch (action.type) {
