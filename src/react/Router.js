@@ -11,14 +11,12 @@ Router.propTypes = {
     children: PropTypes.array,
   })).isRequired,
   router: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
-    search: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
     hash: PropTypes.string.isRequired,
     paths: PropTypes.array.isRequired,
     queries: PropTypes.object.isRequired,
     previous: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-      search: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       hash: PropTypes.string.isRequired,
       paths: PropTypes.array.isRequired,
       queries: PropTypes.object.isRequired,
@@ -27,6 +25,7 @@ Router.propTypes = {
 };
 
 const mapStateToProps = ({ router }) => ({ router });
+
 const RouterContainer = connect(mapStateToProps)(Router);
 
 export { RouterContainer };

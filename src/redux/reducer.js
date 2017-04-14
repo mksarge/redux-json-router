@@ -3,14 +3,12 @@ import { parseUrl, parsePathsFromPathname, parseQueriesFromSearch } from '../uti
 
 function getInitialState() {
   return {
-    pathname: window.location.pathname,
-    search: window.location.search,
+    url: `${location.pathname}${location.search}${location.hash}`,
     hash: window.location.hash,
     paths: [...parsePathsFromPathname(window.location.pathname)],
     queries: { ...parseQueriesFromSearch(window.location.search) },
     previous: {
-      pathname: '',
-      search: '',
+      url: '',
       hash: '',
       paths: [],
       queries: {},
@@ -26,8 +24,7 @@ const routerReducer = (state = getInitialState(), action) => {
       return {
         ...parseUrl(action.payload),
         previous: {
-          pathname: state.pathname,
-          search: state.search,
+          url: state.url,
           hash: state.hash,
           paths: state.paths,
           queries: state.queries,
