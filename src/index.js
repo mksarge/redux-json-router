@@ -1,5 +1,6 @@
 // History API
 export { createBrowserHistory } from './history/createBrowserHistory';
+export { startListener } from './history/startListener';
 
 // Redux API
 export { PUSH, REPLACE, GO, GO_BACK, GO_FORWARD, MANUAL_CHANGE } from './redux/constants';
