@@ -16,18 +16,24 @@ const getInitialState = {
   },
 };
 
-const routerReducer = (state = getInitialState(), action) => {
+const routerReducer = (state = getInitialState, action) => {
   switch (action.type) {
     case PUSH:
-    case REPLACE:
     case MANUAL_CHANGE:
       return {
         ...parseUrl(action.payload),
         previous: {
           url: state.url,
           hash: state.hash,
-          paths: state.paths,
           queries: state.queries,
+          paths: state.paths,
+        },
+      };
+    case REPLACE:
+      return {
+        ...parseUrl(action.payload),
+        previous: {
+          ...state.previous,
         },
       };
     default:
