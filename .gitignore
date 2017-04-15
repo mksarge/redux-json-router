@@ -5,3 +5,6 @@ npm-debug.log
 # Compiled output
 lib
 dist
+
+# Test coverage
+coverage
