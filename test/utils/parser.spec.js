@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { parseUrl } from '../../src/utils/parser';
 
-describe('parser', () => {
+describe('parseUrl', () => {
   it('parses a URL correctly', () => {
     const url = '/nested/route?query=string#hash';
     const actualResult = parseUrl(url);

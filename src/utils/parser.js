@@ -47,4 +47,4 @@ function parseUrl(url) {
   };
 }
 
-export { parseUrl, parseQueriesFromSearch, parsePathsFromPathname };
+export { parseUrl };

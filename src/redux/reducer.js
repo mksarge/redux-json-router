@@ -16,6 +16,17 @@ const getInitialState = {
   },
 };
 
+/**
+ * The router reducer intercepts the above actions types to update the browser history before
+ * updating the state.
+ *
+ * For PUSH and MANUAL_CHANGE, the current state (bar 'previous') is moved into 'previous', and
+ * the new URL resource (eg. '/nested/path?with=query#and-hash') is parsed into separate properties
+ * for easy access from the Redux state.
+ *
+ * For REPLACE, the new URL resource replaces the current one, but the 'previous' property is
+ * left unchanged.
+ */
 const routerReducer = (state = getInitialState, action) => {
   switch (action.type) {
     case PUSH:
