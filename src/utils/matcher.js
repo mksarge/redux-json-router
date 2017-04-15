@@ -43,7 +43,12 @@ function matchRoute(routes, paths) {
 
   // try loading the catch-all route
   const catchAllIndex = routes.findIndex((obj) => obj.path === '*');
-  return (catchAllIndex >= 0) ? { route: routes[catchAllIndex] } : null;
+  return (catchAllIndex >= 0)
+    ? {
+      route: routes[catchAllIndex],
+      params: {},
+    }
+    : null;
 }
 
 export { matchRoute };
