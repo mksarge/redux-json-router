@@ -1,20 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push } from '../redux/actions';
+import { push as pushAction, replace as replaceAction } from '../redux/actions';
 
-// TODO: Link should have an option to scroll to the top, and should by default scroll to a #hash
-class Link extends React.Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
+const Link = (props) => {
+  const { to, onClick, children, dispatch, replace, ...other } = props;
 
-  handleClick(event) {
-    if (this.props.onClick) {
-      this.props.onClick(event);
-    }
-
-    if (event.button !== 0
+  const handleClick = (event) => {
+    // ignore click
+    if ((event.button && event.button !== 0)
       || event.metaKey
       || event.altKey
       || event.ctrlKey
@@ -23,25 +17,34 @@ class Link extends React.Component {
       return;
     }
 
+    // prevent default link behaviour
     event.preventDefault();
-    this.props.dispatch(push(this.props.to));
-  }
 
-  render() {
-    const { to, children, dispatch, ...rest } = this.props;
-    return (
-      <a href={to} onClick={this.handleClick} {...rest} >{children}</a>
-    );
-  }
-}
+    // if onClick prop exists, execute it
+    if (onClick) {
+      onClick(event);
+    }
+
+    if (replace) {
+      // if replace prop exists, dispatch replace action
+      dispatch(replaceAction(to));
+    } else {
+      // else, dispatch push action
+      dispatch(pushAction(to));
+    }
+  };
+
+  return (<a href={to} onClick={handleClick} {...other} >{children}</a>);
+};
 
 Link.propTypes = {
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  to: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   children: PropTypes.node,
-  dispatch: PropTypes.func,
+  replace: PropTypes.bool,
+  dispatch: PropTypes.func.isRequired,
 };
 
 const LinkContainer = connect()(Link);
 
-export { LinkContainer };
+export { Link, LinkContainer };
