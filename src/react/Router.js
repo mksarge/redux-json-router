@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { matchRoute } from '../utils/matcher';
 
@@ -74,4 +75,4 @@ const mapStateToProps = ({ router }) => ({ router });
 
 const RouterContainer = connect(mapStateToProps)(Router);
 
-export { RouterContainer };
+export { Router, RouterContainer };
