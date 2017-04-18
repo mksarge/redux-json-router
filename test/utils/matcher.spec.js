@@ -7,7 +7,7 @@ describe('matchRoute', () => {
     const path = [''];
     const { route, params } = matchRoute(routes, path);
 
-    route.load().then((component) => { expect(component).to.eql('home'); });
+    expect(route.path).to.equal('/');
     expect(params).to.eql({});
   });
 
@@ -15,7 +15,7 @@ describe('matchRoute', () => {
     const path = ['about', 'project'];
     const { route, params } = matchRoute(routes, path);
 
-    route.load().then((component) => { expect(component).to.eql('project'); });
+    expect(route.path).to.equal('/project');
     expect(params).to.eql({});
   });
 
@@ -23,7 +23,7 @@ describe('matchRoute', () => {
     const path = ['blog', 'post-1'];
     const { route, params } = matchRoute(routes, path);
 
-    route.load().then((component) => { expect(component).to.eql('post'); });
+    expect(route.path).to.equal('/:id');
     expect(params).to.eql({ id: 'post-1' });
   });
 
@@ -31,7 +31,7 @@ describe('matchRoute', () => {
     const path = ['other'];
     const { route, params } = matchRoute(routes, path);
 
-    route.load().then((component) => { expect(component).to.eql('catch-all'); });
+    expect(route.path).to.equal('*');
     expect(params).to.eql({});
   });
 
@@ -39,7 +39,7 @@ describe('matchRoute', () => {
     const path = ['about', 'team'];
     const { route, params } = matchRoute(routes, path);
 
-    route.load().then((component) => { expect(component).to.eql('about'); });
+    expect(route.path).to.equal('/about');
     expect(params).to.eql({});
   });
 });
