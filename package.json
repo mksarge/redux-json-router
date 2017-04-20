@@ -1,7 +1,7 @@
 {
   "name": "redux-json-router",
   "version": "0.0.0",
-  "description": "Declarative, Redux-first routing for browser-rendered React/Redux applications.",
+  "description": "Declarative, Redux-first routing for client-rendered React/Redux applications.",
   "main": "lib/index.js",
   "license": "MIT",
   "homepage": "https://github.com/mksarge/redux-json-router",
@@ -26,9 +26,7 @@
   "dependencies": {
     "history": "^4.6.1",
     "loader-utils": "^1.1.0",
-    "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-redux": "^5.0.4"
+    "prop-types": "^15.5.8"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -48,11 +46,19 @@
     "istanbul": "^1.0.0-alpha.2",
     "jsdom": "^9.12.0",
     "mocha": "^3.2.0",
+    "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
     "react-test-renderer": "^15.5.4",
     "redux": "^3.6.0",
     "rimraf": "^2.6.1",
     "sinon": "^2.1.0"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-dom": "^15.0.0",
+    "react-redux": "^5.0.0",
+    "redux": "^3.0.0"
   },
   "scripts": {
     "clean": "rimraf lib dist",
