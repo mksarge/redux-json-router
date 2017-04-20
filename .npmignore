@@ -1,0 +1,8 @@
+src
+test
+coverage
+.babelrc
+.editorconfig
+.eslintrc
+.gitattributes
+.travis.yml
