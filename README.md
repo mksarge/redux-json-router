@@ -1,6 +1,7 @@
 # Redux JSON Router
 
-[![Build Status](https://api.travis-ci.org/mksarge/redux-json-router.svg?branch=master)](https://travis-ci.org/mksarge/redux-json-router)
+[![build status](https://api.travis-ci.org/mksarge/redux-json-router.svg?branch=master)](https://travis-ci.org/mksarge/redux-json-router)
+[![npm version](https://img.shields.io/npm/v/redux-json-router.svg?style=flat)](https://www.npmjs.org/package/redux-json-router)
 
 `redux-json-router` is a minimal router intended for use with client-rendered React/Redux applications.
 
