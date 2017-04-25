@@ -29,7 +29,7 @@
 
 I know what you're thinking - yet another React/Redux router? [Really?][yarr]
 
-Yes, there are [many existing solutions](#credits) out there already. Of course, you already know [`react-router`][react-router]. But you may have also heard of solutions like [`redux-little-router`][redux-little-router] or [`universal-router`][universal-router].
+Yes, there are [many existing solutions][redux-routers] out there already. Of course, you already know [`react-router`][react-router]. But you may have also heard of solutions like [`redux-little-router`][redux-little-router] or [`universal-router`][universal-router].
 
 Every router has its strengths - and, as with any library, choosing a router comes down to finding the one that best suits your needs. Here are some of the categories that similar routers target:
 
@@ -390,6 +390,7 @@ Feel free to file an issue, start a discussion, or send a pull request.
 [react-router-redux]: <https://github.com/reactjs/react-router-redux>
 [rsb]: <https://github.com/kriasoft/react-static-boilerplate/blob/master/docs/routing-and-navigation.md>
 [yarr]: <https://github.com/nmn/yarr>
+[redux-routers]: <https://github.com/markerikson/redux-ecosystem-links/blob/master/routing.md>
 
 <!--- Articles --->
 [might-not-need]: <https://medium.freecodecamp.com/you-might-not-need-react-router-38673620f3d>
