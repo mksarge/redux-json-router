@@ -9,13 +9,24 @@ class Router extends React.Component {
     this.state = {
       component: null,
       params: {},
-      loaded: false,
     };
+    this.getNewComponent = this.getNewComponent.bind(this);
   }
 
   componentWillMount() {
     const { routes, router } = this.props;
-    const { route, params } = matchRoute(routes, router.paths);
+    this.getNewComponent(routes, router.paths);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { routes, router } = nextProps;
+    if (router.url !== this.props.router.url) {
+      this.getNewComponent(routes, router.paths);
+    }
+  }
+
+  getNewComponent(routes, paths) {
+    const { route, params } = matchRoute(routes, paths);
     if (route) {
       route.load().then((component) => {
         this.setState({
@@ -27,26 +38,9 @@ class Router extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { routes, router } = nextProps;
-    if (router.url !== this.props.router.url) {
-      const { route, params } = matchRoute(routes, router.paths);
-      if (route) {
-        route.load().then((component) => {
-          this.setState({
-            params,
-            component,
-            loaded: true,
-          });
-        });
-      }
-    }
-  }
-
   render() {
-    const Component = this.state.component;
-    const params = this.state.params;
-    return this.state.loaded ? <Component params={params} /> : null;
+    const { component: Component, params } = this.state;
+    return Component ? <Component params={params} /> : null;
   }
 
 }
