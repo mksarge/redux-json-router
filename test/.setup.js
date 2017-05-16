@@ -1,10 +1,10 @@
 // Enzyme/Mocha setup: https://github.com/airbnb/enzyme/blob/master/docs/guides/jsdom.md
 
 require('babel-register')();
-const { JSDOM } = require('jsdom');
+var JSDOM = require('jsdom').JSDOM;
 
-const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
-const { window } = jsdom;
+var jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+var window = jsdom.window;
 
 function copyProps(src, target) {
   const props = Object.getOwnPropertyNames(src)
@@ -15,8 +15,6 @@ function copyProps(src, target) {
 
 global.window = window;
 global.document = window.document;
-global.navigator = {
-  userAgent: 'node.js',
-};
+global.navigator = { userAgent: 'node.js' };
 
 copyProps(window, global);
