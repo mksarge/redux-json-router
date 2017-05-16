@@ -1,6 +1,6 @@
 {
   "name": "redux-json-router",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Declarative, Redux-first routing for client-rendered React/Redux applications.",
   "main": "lib/index.js",
   "license": "MIT",
