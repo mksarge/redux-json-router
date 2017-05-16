@@ -20,9 +20,7 @@ class Router extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { routes, router } = nextProps;
-    if (router.url !== this.props.router.url) {
-      this.getNewComponent(routes, router.paths);
-    }
+    this.getNewComponent(routes, router.paths);
   }
 
   getNewComponent(routes, paths) {
@@ -32,7 +30,6 @@ class Router extends React.Component {
         this.setState({
           params,
           component,
-          loaded: true,
         });
       });
     }
