@@ -1,17 +1,15 @@
 import { manualChange } from '../redux/actions';
 
 /**
- * Dispatch an action to initialize the router state in the store, then create
- * a history listener that updates the state upon an external (popstate) event
+ * Dispatches a manualChange action once on app start,
+ * and whenever a popstate navigation event occurs.
  */
 function startListener(history, store) {
-  // dispatch once on app start
-  store.dispatch(manualChange(`${location.pathname}${location.search}${location.hash}`));
+  store.dispatch(manualChange(history.location.path));
 
-  // dispatch on history 'POP' actions
   history.listen((location, action) => {
     if (action === 'POP') {
-      store.dispatch(manualChange(`${location.pathname}${location.search}${location.hash}`));
+      store.dispatch(manualChange(location.path));
     }
   });
 }
