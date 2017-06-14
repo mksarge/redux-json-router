@@ -1,3 +1,36 @@
+## Changes in version 1.x
+
+#### State Shape
+
+`redux-json-router` now uses the [`redux-first-routing`](https://github.com/mksarge/redux-first-routing) package internally, following its state shape:
+```js
+// URL: www.example.com/nested/path?with=query#and-hash
+{
+  router: {
+    pathname: '/nested/path/',
+    search: '?with=query',
+    queries: {
+      with: 'query'
+    },
+    hash: '#and-hash'
+  },
+  ... // other redux state
+}
+```
+
+#### Link
+
+The optional `replace` prop was removed. Instead, you can now specify the desired navigation action via the `action` prop:
+
+```js
+<Link to="/about" />                   // default: dispatches a push action
+<Link to="/about" action="replace" />  // dispatches a replace action
+<Link action="goBack" />               // dispatches a goBack action
+<Link action="goForward" />            // dispatches a goForward action
+```
+
+---
+
 # Redux JSON Router
 
 [![build status](https://api.travis-ci.org/mksarge/redux-json-router.svg?branch=master)](https://travis-ci.org/mksarge/redux-json-router)
