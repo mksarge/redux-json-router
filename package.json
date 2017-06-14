@@ -24,9 +24,10 @@
     "node": ">= 4"
   },
   "dependencies": {
-    "history": "^4.6.1",
     "loader-utils": "^1.1.0",
-    "prop-types": "^15.5.10"
+    "path-to-regexp": "^1.7.0",
+    "prop-types": "^15.5.10",
+    "redux-first-routing": "^0.2.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -66,7 +67,7 @@
     "build": "npm run clean && npm run build:lib",
     "build:lib": "node_modules/.bin/babel src --out-dir lib",
     "test": "node_modules/.bin/_mocha --require test/.setup.js test/**/*.spec.js",
-    "cover": "node_modules/.bin/istanbul cover node_modules/.bin/_mocha --require test/.setup.js test/**/*.spec.js",
+    "cover": "rimraf coverage && node_modules/.bin/istanbul cover node_modules/.bin/_mocha --require test/.setup.js test/**/*.spec.js",
     "prepublish": "npm run lint && npm run cover && npm run build"
   }
 }
