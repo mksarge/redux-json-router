@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { Link, LinkContainer } from '../../src/react/Link';
-import { PUSH, REPLACE } from '../../src/redux/constants';
+import { PUSH, REPLACE, GO_BACK, GO_FORWARD } from 'redux-first-routing';
+import { Link, LinkContainer } from '../src/Link';
 
 describe('Link', () => {
   describe('Base component', () => {
@@ -50,7 +50,7 @@ describe('Link', () => {
       sandbox.restore();
     });
 
-    it('dispatches push action on click', () => {
+    it('dispatches push action', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
           <LinkContainer to="/pathname" />
@@ -63,16 +63,40 @@ describe('Link', () => {
       })).to.equal(true);
     });
 
-    it('dispatches replace action if prop supplied', () => {
+    it('dispatches replace action if specified by the action prop', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
-          <LinkContainer to="/pathname" replace />
+          <LinkContainer to="/pathname" action="replace" />
         </Provider>);
 
       wrapper.find('a').simulate('click');
       expect(dispatchSpy.calledWith({
         type: REPLACE,
         payload: '/pathname',
+      })).to.equal(true);
+    });
+
+    it('dispatches goBack action if specified by the action prop', () => {
+      const wrapper = mount(
+        <Provider store={fakeStore}>
+          <LinkContainer to="/pathname" action="goBack" />
+        </Provider>);
+
+      wrapper.find('a').simulate('click');
+      expect(dispatchSpy.calledWith({
+        type: GO_BACK,
+      })).to.equal(true);
+    });
+
+    it('dispatches goForward action if specified by the action prop', () => {
+      const wrapper = mount(
+        <Provider store={fakeStore}>
+          <LinkContainer to="/pathname" action="goForward" />
+        </Provider>);
+
+      wrapper.find('a').simulate('click');
+      expect(dispatchSpy.calledWith({
+        type: GO_FORWARD,
       })).to.equal(true);
     });
 

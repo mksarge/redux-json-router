@@ -2,24 +2,14 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
-import { Router, RouterContainer } from '../../src/react/Router';
-import routes from '../test-utils/routes';
+import { Router, RouterContainer } from '../src/Router';
+import routes from './test-utils/routes';
 
 const router = {
-  url: '/current',
-  hash: '',
+  pathname: '/current',
+  search: '',
   queries: {},
-  paths: [
-    'current',
-  ],
-  previous: {
-    url: '/previous',
-    hash: '',
-    queries: {},
-    paths: [
-      'previous',
-    ],
-  },
+  hash: '',
 };
 
 describe('Router base component', () => {

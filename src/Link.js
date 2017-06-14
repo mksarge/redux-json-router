@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { push as pushAction, replace as replaceAction } from '../redux/actions';
+import { push, replace, goBack, goForward } from 'redux-first-routing';
 
 const Link = (props) => {
-  const { to, onClick, children, dispatch, replace, ...other } = props;
+  const { to, action, onClick, children, dispatch, ...other } = props;
 
   const handleClick = (event) => {
-    // ignore click
+    // Ignore any click other than a left click
     if ((event.button && event.button !== 0)
       || event.metaKey
       || event.altKey
@@ -17,20 +17,23 @@ const Link = (props) => {
       return;
     }
 
-    // prevent default link behaviour
+    // Prevent page reload
     event.preventDefault();
 
-    // if onClick prop exists, execute it
+    // Execute onClick callback, if it exists
     if (onClick) {
       onClick(event);
     }
 
-    if (replace) {
-      // if replace prop exists, dispatch replace action
-      dispatch(replaceAction(to));
+    // Dispatch the action specified in the props (default: push action)
+    if (action === 'replace') {
+      dispatch(replace(to));
+    } else if (action === 'back' || action === 'goBack') {
+      dispatch(goBack());
+    } else if (action === 'forward' || action === 'goForward') {
+      dispatch(goForward());
     } else {
-      // else, dispatch push action
-      dispatch(pushAction(to));
+      dispatch(push(to));
     }
   };
 
@@ -39,9 +42,9 @@ const Link = (props) => {
 
 Link.propTypes = {
   to: PropTypes.string.isRequired,
+  action: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,
-  replace: PropTypes.bool,
   dispatch: PropTypes.func.isRequired,
 };
 

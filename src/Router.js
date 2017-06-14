@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { matchRoute } from '../utils/matcher';
+import { match } from './match';
 
 class Router extends React.Component {
   constructor() {
@@ -15,31 +15,28 @@ class Router extends React.Component {
 
   componentWillMount() {
     const { routes, router } = this.props;
-    this.getNewComponent(routes, router.paths);
+    this.getNewComponent(routes, router.pathname);
   }
 
   componentWillReceiveProps(nextProps) {
     const { routes, router } = nextProps;
-    this.getNewComponent(routes, router.paths);
+    this.getNewComponent(routes, router.pathname);
   }
 
-  getNewComponent(routes, paths) {
-    const { route, params } = matchRoute(routes, paths);
+  getNewComponent(routes, pathname) {
+    const { route, params } = match(routes, pathname);
     if (route) {
       route.load().then((component) => {
-        this.setState({
-          params,
-          component,
-        });
+        this.setState({ params, component });
       });
     }
   }
 
   render() {
     const { component: Component, params } = this.state;
-    return Component ? <Component params={params} /> : null;
+    const { queries, hash } = this.props.router;
+    return Component ? <Component params={params} queries={queries} hash={hash} /> : null;
   }
-
 }
 
 Router.propTypes = {
@@ -49,21 +46,13 @@ Router.propTypes = {
     children: PropTypes.array,
   })).isRequired,
   router: PropTypes.shape({
-    url: PropTypes.string.isRequired,
-    hash: PropTypes.string.isRequired,
+    pathname: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
     queries: PropTypes.object.isRequired,
-    paths: PropTypes.array.isRequired,
-    previous: PropTypes.shape({
-      url: PropTypes.string.isRequired,
-      hash: PropTypes.string.isRequired,
-      queries: PropTypes.object.isRequired,
-      paths: PropTypes.array.isRequired,
-    }).isRequired,
+    hash: PropTypes.string.isRequired,
   }),
 };
 
-const mapStateToProps = ({ router }) => ({ router });
-
-const RouterContainer = connect(mapStateToProps)(Router);
+const RouterContainer = connect(({ router }) => ({ router }))(Router);
 
 export { Router, RouterContainer };
