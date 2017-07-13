@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import requiredIf from 'react-required-if';
 import { push, replace, goBack, goForward } from 'redux-first-routing';
 
 const Link = (props) => {
@@ -41,7 +42,7 @@ const Link = (props) => {
 };
 
 Link.propTypes = {
-  to: PropTypes.string.isRequired,
+  to: requiredIf(PropTypes.string, (props) => !props.action),
   action: PropTypes.string,
   onClick: PropTypes.func,
   children: PropTypes.node,

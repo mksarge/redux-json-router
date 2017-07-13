@@ -27,7 +27,8 @@
     "loader-utils": "^1.1.0",
     "path-to-regexp": "^1.7.0",
     "prop-types": "^15.5.10",
-    "redux-first-routing": "^0.2.1"
+    "react-required-if": "^1.0.1",
+    "redux-first-routing": "^0.2.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
