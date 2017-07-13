@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import { match } from '../src/match';
 import routes from './test-utils/routes';
 
-describe('matchRoute', () => {
+describe('match', () => {
   it('matches an exact pathname', () => {
     const { route, params } = match(routes, '/');
     expect(route.path).to.equal('/');

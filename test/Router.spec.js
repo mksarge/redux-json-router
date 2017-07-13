@@ -12,7 +12,7 @@ const router = {
   hash: '',
 };
 
-describe('Router base component', () => {
+describe('Router', () => {
   describe('Base component', () => {
     let wrapper;
 

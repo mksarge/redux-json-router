@@ -3,7 +3,7 @@
  * Eg. '/nested/route/3' => ['nested, 'route', '3']
  */
 function parsePathname(pathname) {
-  return pathname.split('/').slice(1);
+  return pathname.split('/').filter((val) => val);
 }
 
 /**
@@ -51,7 +51,8 @@ function matchPaths(routes, paths) {
  * Parse pathname into paths array before recursively matching the paths
  */
 function match(routes, pathname) {
-  const paths = parsePathname(pathname);
+  let paths = parsePathname(pathname);
+  paths = paths.length ? paths : [''];
   return matchPaths(routes, paths);
 }
 
