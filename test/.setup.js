@@ -15,6 +15,7 @@ function copyProps(src, target) {
 
 global.window = window;
 global.document = window.document;
+global.HTMLElement = window.HTMLElement;
 global.navigator = { userAgent: 'node.js' };
 
 copyProps(window, global);
