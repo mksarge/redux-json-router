@@ -20,6 +20,9 @@ const Link = (props) => {
 
     // Prevent page reload
     event.preventDefault();
+    
+    // Prevent event bubbling
+    event.stopPropagation();
 
     // Execute onClick callback, if it exists
     if (onClick) {
