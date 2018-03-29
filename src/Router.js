@@ -24,7 +24,7 @@ class Router extends React.Component {
   }
 
   getNewComponent(routes, pathname) {
-    const { route, params } = match(routes, pathname);
+    const { route, params } = match(routes, pathname) || {};
     if (route) {
       route.load().then((component) => {
         this.setState({ params, component });
