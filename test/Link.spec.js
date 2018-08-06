@@ -1,9 +1,12 @@
+import { expect } from 'chai';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { shallow, mount } from 'enzyme';
-import { expect } from 'chai';
+import {
+  GO_BACK, GO_FORWARD, PUSH, REPLACE,
+} from 'redux-first-routing';
 import sinon from 'sinon';
-import { PUSH, REPLACE, GO_BACK, GO_FORWARD } from 'redux-first-routing';
+
 import { Link, LinkContainer } from '../src/Link';
 
 describe('Link', () => {
@@ -12,7 +15,10 @@ describe('Link', () => {
 
     beforeEach(() => {
       wrapper = shallow(
-        <Link to="/" dispatch={() => { }} style={{ color: 'blue' }}>Link text</Link>);
+        <Link to="/" dispatch={() => { }} style={{ color: 'blue' }}>
+Link text
+        </Link>,
+      );
     });
 
     it('renders without exploding', () => {
@@ -31,7 +37,6 @@ describe('Link', () => {
   });
 
   describe('Connected component', () => {
-    let sandbox;
     let fakeStore;
     let dispatchSpy;
     const createFakeStore = (state) => ({
@@ -41,20 +46,20 @@ describe('Link', () => {
     });
 
     beforeEach(() => {
-      sandbox = sinon.sandbox.create();
       fakeStore = createFakeStore({});
-      dispatchSpy = sandbox.spy(fakeStore, 'dispatch');
+      dispatchSpy = sinon.spy(fakeStore, 'dispatch');
     });
 
     afterEach(() => {
-      sandbox.restore();
+      sinon.restore();
     });
 
     it('dispatches push action', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
           <LinkContainer to="/pathname" />
-        </Provider>);
+        </Provider>,
+      );
 
       wrapper.find('a').simulate('click');
       expect(dispatchSpy.calledWith({
@@ -67,7 +72,8 @@ describe('Link', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
           <LinkContainer to="/pathname" action="replace" />
-        </Provider>);
+        </Provider>,
+      );
 
       wrapper.find('a').simulate('click');
       expect(dispatchSpy.calledWith({
@@ -80,7 +86,8 @@ describe('Link', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
           <LinkContainer to="/pathname" action="goBack" />
-        </Provider>);
+        </Provider>,
+      );
 
       wrapper.find('a').simulate('click');
       expect(dispatchSpy.calledWith({
@@ -92,7 +99,8 @@ describe('Link', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
           <LinkContainer to="/pathname" action="goForward" />
-        </Provider>);
+        </Provider>,
+      );
 
       wrapper.find('a').simulate('click');
       expect(dispatchSpy.calledWith({
@@ -101,11 +109,12 @@ describe('Link', () => {
     });
 
     it('executes onClick prop if supplied', () => {
-      const onClick = sandbox.spy();
+      const onClick = sinon.spy();
       const wrapper = mount(
         <Provider store={fakeStore}>
           <LinkContainer to="/pathname" onClick={onClick} />
-        </Provider>);
+        </Provider>,
+      );
 
       wrapper.find('a').simulate('click');
       expect(onClick.calledOnce).to.equal(true);

@@ -1,7 +1,8 @@
+import { expect } from 'chai';
+import { mount, shallow } from 'enzyme';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { shallow, mount } from 'enzyme';
-import { expect } from 'chai';
+
 import { Router, RouterContainer } from '../src/Router';
 import routes from './test-utils/routes';
 
@@ -18,7 +19,8 @@ describe('Router', () => {
 
     beforeEach(() => {
       wrapper = shallow(
-        <Router routes={routes} router={router} />);
+        <Router routes={routes} router={router} />,
+      );
     });
 
     it('renders without exploding', () => {
@@ -42,7 +44,8 @@ describe('Router', () => {
       const wrapper = mount(
         <Provider store={fakeStore}>
           <RouterContainer routes={routes} />
-        </Provider>);
+        </Provider>,
+      );
 
       expect(wrapper).to.have.lengthOf(1);
     });

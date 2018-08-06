@@ -1,11 +1,15 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import requiredIf from 'react-required-if';
-import { push, replace, goBack, goForward } from 'redux-first-routing';
+import {
+  goBack, goForward, push, replace,
+} from 'redux-first-routing';
 
 const Link = (props) => {
-  const { to, action, onClick, children, dispatch, ...other } = props;
+  const {
+    to, action, onClick, children, dispatch, ...other
+  } = props;
 
   const handleClick = (event) => {
     // Ignore any click other than a left click
@@ -38,7 +42,11 @@ const Link = (props) => {
     }
   };
 
-  return (<a href={to} onClick={handleClick} {...other} >{children}</a>);
+  return (
+    <a href={to} onClick={handleClick} {...other}>
+      {children}
+    </a>
+  );
 };
 
 Link.propTypes = {
