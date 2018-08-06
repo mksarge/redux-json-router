@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import { match } from '../src/match';
 import routes from './test-utils/routes';
 
