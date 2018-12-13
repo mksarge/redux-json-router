@@ -6,18 +6,13 @@ const loaderUtils = require('loader-utils');
 function asyncRequire(page, chunk, shouldChunk) {
   // load in main chunk if explicitly specified, or if chunks option was set to false
   if ((chunk && chunk === 'main') || (!chunk && shouldChunk === false)) {
-    return `Promise.resolve(require('${page}').default)`;
+    return `import('${page}').then(m => m.default)`;
   }
   // load in separate chunk if chunk name was not specified, or if is not named "main"
-  return `new Promise(function (resolve, reject) {
-      try {
-        require.ensure(['${page}'], function (require) {
-          resolve(require('${page}').default);
-        }${typeof chunk === 'string' ? `, '${chunk}'` : ''});
-      } catch (err) {
-        reject(err);
-      }
-    })`;
+  return `import(${typeof chunk === 'string' ? `
+      /* webpackChunkName: "${chunk}" */` : ''}
+      '${page}'
+  ).then(m => m.default)`;
 }
 
 /**
