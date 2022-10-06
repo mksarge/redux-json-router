@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "loader-utils": "^1.1.0",
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.2",
     "react-required-if": "^1.0.1",
     "redux-first-routing": "^0.2.2"
   },
