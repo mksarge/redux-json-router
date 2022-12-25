@@ -24,7 +24,7 @@
     "node": ">= 4"
   },
   "dependencies": {
-    "loader-utils": "^1.1.0",
+    "loader-utils": "^2.0.0",
     "prop-types": "^15.5.10",
     "react-required-if": "^1.0.1",
     "redux-first-routing": "^0.2.2"
